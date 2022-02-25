@@ -35,6 +35,6 @@
     </div>
     <!-- /.content-wrapper -->
     @include('Backend.Partials.footer')
-  </div>
+</div>
   <!-- ./wrapper -->
 @endsection
