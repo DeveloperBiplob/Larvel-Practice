@@ -43,6 +43,10 @@ class CategoryController extends Controller
         ]);
 
         if($category){
+            // Session()->flash('message', 'Data Save Successfully!');
+            // Session()->flash('type', 'success');
+            // $this->notification();
+            setNotification(); // Custom Helper Funciton
             return back();
         }
     }

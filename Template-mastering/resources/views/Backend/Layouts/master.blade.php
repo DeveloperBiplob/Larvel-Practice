@@ -28,7 +28,16 @@
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content-header -->
-
+      <div class="p-2">
+        @if(session('message'))
+        <div class="alert alert-{{ session('type') }} alert-dismissible fade show" role="alert">
+            {{ session('message') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+      @endif
+      </div>
       <!-- Main content -->
       @yield('master-content')
       <!-- /.content -->
