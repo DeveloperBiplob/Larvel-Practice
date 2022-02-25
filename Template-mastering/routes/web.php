@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +20,19 @@ Route::get('/', function () {
 });
 
 Route::resource('/category', CategoryController::class);
+
+Route::get('/scope', function(){
+
+    // for($i = 0; $i < 100; $i ++){
+    //     Product::create([
+    //         'name' => 'biplob' . '_' . $i,
+    //         'slug' => 'biplob' . '_' . $i,
+    //         'price' => rand(2,99),
+    //         'view' => rand(2, 99)
+    //     ]);
+    // }
+
+
+    return Product::get();
+});
 
