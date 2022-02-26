@@ -32,6 +32,12 @@ Route::get('/scope', function(){
     //     ]);
     // }
 
+    Product::create([
+        'name' => 'biplob',
+        'slug' => 'biplob',
+        'price' => rand(2,99),
+        'view' => rand(2, 99)
+    ]);
 
     return Product::get()->count();
 });
