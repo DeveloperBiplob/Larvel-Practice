@@ -33,6 +33,6 @@ Route::get('/scope', function(){
     // }
 
 
-    return Product::get();
+    return Product::get()->count();
 });
 
