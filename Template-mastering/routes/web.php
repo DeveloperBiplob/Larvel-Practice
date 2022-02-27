@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Models\Country;
 use App\Models\Mechanic;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
@@ -43,9 +44,18 @@ Route::get('/scope', function(){
     return Product::get()->count();
 });
 
-
+// Has one Through----//
 Route::get('/has-one-through', function(){
     // $mechanics = Mechanic::with('car.owner')->get();
     $mechanics = Mechanic::with('car', 'carOwner')->get();
     return view('has_one_through', compact('mechanics'));
+});
+
+
+// Has Many Through----//
+Route::get('/has-many-through', function(){
+
+    // $countries = Country::with('cities.shops')->get();
+    $countries = Country::with('cities', 'countryWiseShops')->get();
+    return view('has-many-through', compact('countries'));
 });
