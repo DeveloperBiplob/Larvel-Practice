@@ -9,4 +9,8 @@
     {{ $shop_names }}
 
     <h1>@CustomUpperCase('biplob jabery')</h1>
+    @php
+        $users = App\Models\User::all();
+    @endphp
+    <x-Alert type="danger" :users="$users"/>
 @endsection
