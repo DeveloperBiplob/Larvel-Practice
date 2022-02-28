@@ -27,5 +27,10 @@
             </tr>
            @endforeach
         </table>
+
+        <hr>
+        {{ $global_data }} <br>
+        {{ $global_information }} <br>
+        {{ $shops }}
     </div>
 @endsection
