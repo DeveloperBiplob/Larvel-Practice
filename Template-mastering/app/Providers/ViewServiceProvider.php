@@ -8,6 +8,7 @@ use App\Models\User;
 use App\View\Composers\UserComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -42,5 +43,11 @@ class ViewServiceProvider extends ServiceProvider
 
         // View Composer With Another Class--//
         View()->composer(['Backend.index'], UserComposer::class);
+
+
+        // Custom Blade Directive---//
+        Blade::directive('CustomUpperCase', function ($expression) {
+            return "<?php echo ucfirst($expression); ?>";
+        });
     }
 }

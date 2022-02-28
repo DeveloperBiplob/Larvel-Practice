@@ -7,4 +7,6 @@
     <br>
     {{ $shops }}
     {{ $shop_names }}
+
+    <h1>@CustomUpperCase('biplob jabery')</h1>
 @endsection
