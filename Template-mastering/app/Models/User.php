@@ -46,6 +46,7 @@ class User extends Authenticatable
     {
         // return $this->belongsToMany(Skill::class, 'skill_user');
         // return $this->belongsToMany(Skill::class, 'skill_user')->withTimestamps();
-        return $this->belongsToMany(Skill::class, 'skill_user')->withTimestamps()->withPivot('view');
+        // return $this->belongsToMany(Skill::class, 'skill_user')->withTimestamps()->withPivot('view');
+        return $this->belongsToMany(Skill::class, 'skill_user')->withTimestamps()->withPivot('view')->as('myPivot');
     }
 }

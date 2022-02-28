@@ -65,8 +65,23 @@ Route::get('/has-many-through', function(){
 // Many TO Many RealationShip----//
 Route::get('/many-to-many', function(){
 
+    // Insurt Data---//
     // return User::find(1)->skills()->attach(1);
     // return User::find(1)->skills()->attach([2,5]);
-    return User::find(2)->skills()->attach(3, ['view' => 10]);
-    return view('many-to-many');
+    // return User::find(2)->skills()->attach(3, ['view' => 10]);
+
+    //Delete Data---//
+    // return User::find(2)->skills()->detach(1);
+    // return User::find(2)->skills()->detach([1,2,3,4,5]);
+
+    //Sync---//
+    // return User::find(2)->skills()->sync([1,2,3]);
+
+    //Toggle--//
+    // return User::find(2)->skills()->toggle([1,2,3,4,5]);
+
+    //Fetch Data ---//
+    $users = User::has('skills')->with('skills')->get();
+    // $users = User::with('skills')->get();
+    return view('many-to-many', compact('users'));
 });
