@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Models\Country;
 use App\Models\Mechanic;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,4 +59,14 @@ Route::get('/has-many-through', function(){
     // $countries = Country::with('cities.shops')->get();
     $countries = Country::with('cities', 'countryWiseShops')->get();
     return view('has-many-through', compact('countries'));
+});
+
+
+// Many TO Many RealationShip----//
+Route::get('/many-to-many', function(){
+
+    // return User::find(1)->skills()->attach(1);
+    // return User::find(1)->skills()->attach([2,5]);
+    return User::find(2)->skills()->attach(3, ['view' => 10]);
+    return view('many-to-many');
 });

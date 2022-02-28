@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Shop;
+use App\Models\Skill;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -46,6 +48,24 @@ class DatabaseSeeder extends Seeder
             Shop::create([
                 'city_id' => rand(1, 6),
                 'name' => $shops[$i]
+            ]);
+        }
+
+        $users = ['Biplob', 'jabery', 'Bipu', 'Vipul', 'Korim'];
+
+        for($i = 0; $i < count($users); $i++){
+            User::create([
+                'name' => $users[$i],
+                'email' => $users[$i] . '@gmail.com',
+                'password' => encrypt($users[$i]),
+            ]);
+        }
+
+        $skills = ['PHP', 'JS', 'HTML', 'CSS', 'JQuery', 'PHYHON'];
+
+        for($i = 0; $i < count($skills); $i++){
+            Skill::create([
+                'name' => $skills[$i]
             ]);
         }
     }
