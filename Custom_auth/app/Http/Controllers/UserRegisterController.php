@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 
 class UserRegisterController extends Controller
 {
@@ -25,6 +26,8 @@ class UserRegisterController extends Controller
         $user = User::create($request->only(['name', 'email', 'password']));
 
         Auth::guard('web')->login($user);
+
+        event(new Registered($user));
 
         $request->session()->regenerate();
 

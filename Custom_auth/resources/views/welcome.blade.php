@@ -1,5 +1,5 @@
-@extends('Layouts.master')
+@extends('Layouts.app')
 @section('title', 'Default')
-@section('master-content')
-    Hello
+@section('app-content')
+
 @endsection
