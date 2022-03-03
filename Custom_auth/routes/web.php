@@ -21,19 +21,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/register', [UserRegisterController::class, 'create'])->name('register')->middleware('guest');
+Route::get('/register', [UserRegisterController::class, 'create'])->name('register.create')->middleware('guest:web');
 
-Route::post('/register', [UserRegisterController::class, 'store'])->name('register')->middleware('guest');
+Route::post('/register', [UserRegisterController::class, 'store'])->name('register')->middleware('guest:web');
 
-Route::get('/login', [UserAuthenticationController::class, 'create'])->name('login')->middleware('guest');
+Route::get('/login', [UserAuthenticationController::class, 'create'])->name('login.create')->middleware('guest:web');
 
-Route::post('/login', [UserAuthenticationController::class, 'login'])->name('login')->middleware('guest');
+Route::post('/login', [UserAuthenticationController::class, 'login'])->name('login')->middleware('guest:web');
 
-Route::post('/logout', [UserAuthenticationController::class, 'logout'])->name('logout')->middleware('auth');
+Route::post('/logout', [UserAuthenticationController::class, 'logout'])->name('logout')->middleware('auth:web');
 
 Route::get('/dashboard', function(){
     return view('User.dashboard');
-})->name('dashboard')->middleware(['auth', 'verified']);
+})->name('dashboard')->middleware(['auth:web', 'verified']);
 
 
 Route::get('/email/verify', function () {

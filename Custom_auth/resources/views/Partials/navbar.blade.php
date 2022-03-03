@@ -117,10 +117,18 @@
         </a>
       </li>
       <li class="nav-item">
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
-            <button type="submit" class="btn btn-primary btn-xs">Logout</button>
-        </form>
+        @auth('web')
+            <form action="{{ route('logout') }}" method="POST" class="mt-2">
+                @csrf
+                <button type="submit" class="btn btn-primary btn-xs">Logout</button>
+            </form>
+        @endauth
+        @auth('admin')
+            <form action="{{ route('admin.logout') }}" method="POST" class="mt-2">
+                @csrf
+                <button type="submit" class="btn btn-info btn-xs">Logout</button>
+            </form>
+        @endauth
         </a>
       </li>
     </ul>
