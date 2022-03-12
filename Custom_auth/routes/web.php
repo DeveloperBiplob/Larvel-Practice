@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserAuthenticationController;
+use App\Http\Controllers\UserPasswordResetController;
 use App\Http\Controllers\UserRegisterController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -53,3 +54,13 @@ Route::post('/email/verification-notification', function (Request $request) {
 
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+// Password reset//
+
+Route::get('/forgot-password', [UserPasswordResetController::class, 'create'])->middleware('guest')->name('password.request');
+
+Route::post('/forgot-password', [UserPasswordResetController::class, 'store'])->middleware('guest')->name('password.email');
+
+Route::get('/reset-password/{token}', [UserPasswordResetController::class, 'newPassowrdCreate'])->middleware('guest')->name('password.reset');
+
+Route::post('/reset-password', [UserPasswordResetController::class, 'newPasswordStore'])->middleware('guest')->name('password.update');
