@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,5 +17,36 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+
+        User::create([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => 'password',
+            'role' => 'admin',
+            'email_verified_at' => now()
+        ]);
+        User::create([
+            'name' => 'User',
+            'email' => 'user@gmail.com',
+            'password' => 'password',
+            'role' => 'editor',
+            'email_verified_at' => now()
+        ]);
+        User::create([
+            'name' => 'Moderator',
+            'email' => 'moderator@gmail.com',
+            'password' => 'password',
+            'role' => 'moderator',
+            'email_verified_at' => now()
+        ]);
+
+        $categories = ['phone', 'Laptop', 'Computer', 'Mobile', 'Watch', 'pen'];
+
+        for($i = 0; $i < count($categories); $i ++){
+            Category::create([
+                'user_id' => rand(1, 3),
+                'name' => $categories[$i]
+            ]);
+        }
     }
 }

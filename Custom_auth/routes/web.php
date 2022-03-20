@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserAuthenticationController;
 use App\Http\Controllers\UserPasswordResetController;
 use App\Http\Controllers\UserRegisterController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -64,3 +65,10 @@ Route::post('/forgot-password', [UserPasswordResetController::class, 'store'])->
 Route::get('/reset-password/{token}', [UserPasswordResetController::class, 'newPassowrdCreate'])->middleware('guest')->name('password.reset');
 
 Route::post('/reset-password', [UserPasswordResetController::class, 'newPasswordStore'])->middleware('guest')->name('password.update');
+
+
+// Authorigation---//
+Route::get('category', function(){
+    $categories = Category::get();
+    return view('User.pages.category', compact('categories'));
+})->name('user.category');
