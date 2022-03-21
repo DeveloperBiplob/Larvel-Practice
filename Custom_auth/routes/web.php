@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,3 +73,37 @@ Route::get('category', function(){
     $categories = Category::get();
     return view('User.pages.category', compact('categories'));
 })->name('user.category');
+
+Route::get('category/create', function(){
+    return view('User.pages.create');
+})->name('category.create');
+
+Route::post('category/create', function(Request $request){
+    $request->validate([
+        'name' => ['required']
+    ]);
+    Category::create([
+        'user_id' => auth()->user()->id,
+        'name' => $request->name
+    ]);
+    return redirect()->route('user.category');
+})->name('category.store');
+
+Route::get('category/view/{category}', function(Category $category){
+    return view('User.pages.view', compact('category'));
+})->name('category.view');
+
+Route::get('category/edit/{category}', function(Category $category){
+    return view('User.pages.edit', compact('category'));
+})->name('category.edit');
+
+Route::post('category/update/{category}', function(Request $request, Category $category){
+    $request->validate([
+        'name' => ['required']
+    ]);
+    $category->update([
+        'user_id' => auth()->user()->id,
+        'name' => $request->name
+    ]);
+    return redirect()->route('user.category');
+})->name('category.update');
