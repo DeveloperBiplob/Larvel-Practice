@@ -4,7 +4,6 @@ use App\Http\Controllers\UserAuthenticationController;
 use App\Http\Controllers\UserPasswordResetController;
 use App\Http\Controllers\UserRegisterController;
 use App\Models\Category;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
