@@ -30,7 +30,9 @@
                     <td>{{ Str::ucfirst($category->user->role) }}</td>
                     <td>
                         <a href="{{ route('category.view', $category->id) }}" class="btn btn-success btn-xs">View</a>
+                        @can('updateCategory', $category)
                         <a href="{{ route('category.edit', $category->id) }}" class="btn btn-info btn-xs">Edit</a>
+                        @endcan
                         <a href="" class="btn btn-danger btn-xs">Delete</a>
                     </td>
                 </tr>

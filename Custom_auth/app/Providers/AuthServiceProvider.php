@@ -38,5 +38,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('isModerator', function(User $user){
             return $user->role === 'moderator';
         });
+
+        Gate::define('updateCategory', function(User $user, Category $category){
+            return $user->id === $category->user_id;
+        });
     }
 }

@@ -6,7 +6,7 @@
             <h1>Update Category</h1>
         </div>
         <div class="card-body" style="width: 600px; margin:auto">
-            <form action="{{ route('category.update') }}" method="POST">
+            <form action="{{ route('category.update', $category->id) }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="">Category Name</label>

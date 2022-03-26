@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Gate;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,7 +76,10 @@ Route::get('category', function(){
     return view('User.pages.category', compact('categories'));
 })->name('user.category');
 
-Route::get('category/create', function(){
+Route::get('category/create', function(Category $category){
+    Gate::allows('updateCategory') ? Response::allow()
+    : abort(403);
+
     return view('User.pages.create');
 })->name('category.create');
 

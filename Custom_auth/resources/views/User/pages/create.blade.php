@@ -3,7 +3,8 @@
 @section('master-content')
     <div class="card">
         <div class="card-header">
-            <h1>Add Category</h1>
+            <h1 class="float-left">Add Category</h1>
+            <a href="{{ route('user.category') }}" class="btn btn-xs btn-success float-right">Back</a>
         </div>
         <div class="card-body" style="width: 600px; margin:auto">
             <form action="{{ route('category.store') }}" method="POST">
