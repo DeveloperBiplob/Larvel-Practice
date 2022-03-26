@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Skill;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -46,6 +47,15 @@ class DatabaseSeeder extends Seeder
             Category::create([
                 'user_id' => rand(1, 3),
                 'name' => $categories[$i]
+            ]);
+        }
+
+        $skills = ['PHP', 'JAVEA', 'LARAVEL', 'CSS', 'HTML', 'PHYTHON'];
+
+        for($i = 0; $i < count($skills); $i ++){
+            Skill::create([
+                'user_id' => rand(1, 3),
+                'name' => $skills[$i]
             ]);
         }
     }

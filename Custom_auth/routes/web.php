@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SkillController;
 use App\Http\Controllers\UserAuthenticationController;
 use App\Http\Controllers\UserPasswordResetController;
 use App\Http\Controllers\UserRegisterController;
@@ -112,3 +113,6 @@ Route::post('category/update/{category}', function(Request $request, Category $c
     ]);
     return redirect()->route('user.category');
 })->name('category.update');
+
+
+Route::resource('/skill', SkillController::class);
