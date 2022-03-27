@@ -5,12 +5,14 @@ use App\Http\Controllers\UserAuthenticationController;
 use App\Http\Controllers\UserPasswordResetController;
 use App\Http\Controllers\UserRegisterController;
 use App\Models\Category;
+use App\Models\Skill;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Cache;
 
 /*
 |--------------------------------------------------------------------------
@@ -116,3 +118,26 @@ Route::post('category/update/{category}', function(Request $request, Category $c
 
 
 Route::resource('/skill', SkillController::class);
+
+
+Route::get('cache', function(){
+
+    // return Cache::get('key', 'Biplob Jabery');
+    // return Cache::get('key', function (){
+    //     return Skill::get();
+    // }, 500);
+
+    // if(Cache::has('key')){
+    //     return 'yes';
+    // }else{
+    //     return 'No';
+    // }
+
+
+    $skills = Cache::rememberForever('skills', function(){
+        return Skill::with('user')->get();
+    });
+
+    $skills = Skill::with('user')->get();
+    return view('User.pages.cache', compact('skills'));
+});
