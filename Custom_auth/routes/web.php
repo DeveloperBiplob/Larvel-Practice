@@ -142,7 +142,7 @@ Route::get('cache', function(){
 
     // $skills = Skill::with('user')->get();
     return view('User.pages.cache', compact('skills'));
-})->name('cache');
+})->name('cache')->middleware('response_middleware:10');
 
 Route::delete('cache/delelte/{skill}', function (Skill $skill){
     if($skill->delete()){
