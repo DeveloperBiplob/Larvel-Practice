@@ -134,10 +134,18 @@ Route::get('cache', function(){
     // }
 
 
+    // Cache::forget('skills');
+
     $skills = Cache::rememberForever('skills', function(){
         return Skill::with('user')->get();
     });
 
     // $skills = Skill::with('user')->get();
     return view('User.pages.cache', compact('skills'));
-});
+})->name('cache');
+
+Route::delete('cache/delelte/{skill}', function (Skill $skill){
+    if($skill->delete()){
+        return redirect()->route('cache');
+    }
+})->name('cache.delete');

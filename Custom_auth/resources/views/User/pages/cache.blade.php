@@ -22,7 +22,11 @@
                     <td>
                         <a href="" class="btn btn-success btn-xs">View</a>
                        <a href="" class="btn btn-info btn-xs">Edit</a>
-                       <a href="" class="btn btn-danger btn-xs">Delete</a>
+                       <form action="{{ route('cache.delete', $skill->id) }}" method="POST" class="d-inline-block">
+                        @csrf
+                        @method('DELETE')
+                            <button class="btn btn-danger btn-xs" type="submit">Delete</button>
+                    </form>
                     </td>
                 </tr>
                 @endforeach

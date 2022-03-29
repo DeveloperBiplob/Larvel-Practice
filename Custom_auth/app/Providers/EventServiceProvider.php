@@ -3,7 +3,11 @@
 namespace App\Providers;
 
 use App\Events\AdminRegisterEvent;
+use App\Events\SkillDeleteEvent;
 use App\Listeners\SendAdminRegisterEventNotification;
+use App\Listeners\SkillDeleteListener;
+use App\Models\Skill;
+use App\Observers\SkillObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -24,6 +28,10 @@ class EventServiceProvider extends ServiceProvider
         AdminRegisterEvent::class => [
             SendAdminRegisterEventNotification::class,
         ],
+
+        SkillDeleteEvent::class => [
+            SkillDeleteListener::class,
+        ],
     ];
 
     /**
@@ -33,7 +41,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Skill::observe(SkillObserver::class);
     }
 
     /**
