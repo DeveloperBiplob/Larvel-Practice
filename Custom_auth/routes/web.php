@@ -140,7 +140,7 @@ Route::get('cache', function(){
         return Skill::with('user')->get();
     });
 
-    // $skills = Skill::with('user')->get();
+    $skills = Skill::with('user')->get();
     return view('User.pages.cache', compact('skills'));
 })->name('cache')->middleware('response_middleware:10');
 
