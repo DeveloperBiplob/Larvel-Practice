@@ -4,8 +4,10 @@ use App\Http\Controllers\SkillController;
 use App\Http\Controllers\UserAuthenticationController;
 use App\Http\Controllers\UserPasswordResetController;
 use App\Http\Controllers\UserRegisterController;
+use App\Mail\TestMail;
 use App\Models\Category;
 use App\Models\Skill;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -13,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -149,3 +152,12 @@ Route::delete('cache/delelte/{skill}', function (Skill $skill){
         return redirect()->route('cache');
     }
 })->name('cache.delete');
+
+
+
+Route::get('mail', function(){
+    // return view('Mail.text');
+
+    $user = User::first();
+    Mail::to($user->email)->send(new TestMail($user));
+});
